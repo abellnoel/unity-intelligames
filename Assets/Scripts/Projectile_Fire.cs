@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Projectile_Fire : MonoBehaviour
 {
+    //TESTING FOR SWARM BEHAVIOR AND MOUSE TRACKING
+    private float speed = 8.0f;
+    public static Vector2 target;
+
+
+    void Update()
+    {     
+        target = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
+        //move towards target
+        float step = speed * Time.deltaTime;
+        // move sprite towards the target location
+        transform.position = Vector2.MoveTowards(transform.position, target, step);
+    }
     //using to not cause physics update to collisions
     private void OnTriggerEnter2D(Collider2D collision) 
     {

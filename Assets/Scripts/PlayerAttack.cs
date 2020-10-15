@@ -4,27 +4,53 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Transform origin;
-    public GameObject projectilePrefab;
-
-    public float projectileSpeed = 10f;
+    [SerializeField]Transform origin;
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] private float chargeMax;
+    [SerializeField] private float chargeRate;
+    [SerializeField] private float fireInterval;
+    private float charge;
+    private int fireStreamNum;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        //while button is held
+        if (Input.GetMouseButton(0))
         {
-            Attack();
+            if (charge < chargeMax)
+            {
+                charge += chargeRate * Time.deltaTime;
+                Debug.Log("charge: " + charge);
+            }
+            else //
+            {
+                charge = chargeMax;
+            }
+        }
+        //when button is released
+        if (Input.GetMouseButtonUp(0))
+        {
+            fireStreamNum = Mathf.FloorToInt(charge); //make charge int
+                                                      //using floor so it doesn't go above max
+            Debug.Log("fireStreamNum: " + fireStreamNum);
+            StartCoroutine(Attack(fireStreamNum));
+            charge = 0; //reset charge
         }
     }
 
-    //function to shoot projectile
-    void Attack()
+    //function to spawn projectile, projectile movement is controlled in it's script
+    IEnumerator Attack(int fireStream)
     {
-        GameObject projectile = Instantiate(projectilePrefab, 
-                                            origin.position, 
-                                            origin.rotation);
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.AddForce(origin.up * projectileSpeed, ForceMode2D.Impulse);
+        GameObject previousProjectile = null;
+        for (int i = 0; i < fireStream; i++)
+        {
+            GameObject projectile = Instantiate(projectilePrefab,
+                                                origin.position,
+                                                origin.rotation);
+            previousProjectile = projectile;
+            yield return new WaitForSecondsRealtime(fireInterval);
+        }
+        yield return null;
     }
 }

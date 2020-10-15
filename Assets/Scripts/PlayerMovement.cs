@@ -6,7 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float rotationSpeed = 5f;
     Vector2 movement;
+    Vector2 mousePoint;
+    Vector2 targetPoint;
+    float angle;
 
     // Update is called once per frame
     void Update()
@@ -14,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
         //returns -1 left/up, 0 neutral, +1 right/down
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        //get x, y position of the mouse in the world
+        mousePoint = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
+        targetPoint = mousePoint - rb.position;
+        
+        //calculate rotation
+        angle = Mathf.Atan2(targetPoint.y, targetPoint.x) * Mathf.Rad2Deg - 90f; //gets angle from player to mouse point
+        rb.rotation = angle;
     }
 
     private void FixedUpdate()

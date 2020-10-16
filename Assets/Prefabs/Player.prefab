@@ -58,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8415474506420767762}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.9416018, y: -3.2862802, z: 1.1380186}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
@@ -166,7 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {fileID: 8415474505359246052}
   projectilePrefab: {fileID: 5379803074557940200, guid: ac645359069d2c74a8dca9273617e478, type: 3}
-  projectileSpeed: 8
+  chargeMax: 5
+  chargeRate: 2
+  fireInterval: 0.08
 --- !u!61 &4906759866274288501
 BoxCollider2D:
   m_ObjectHideFlags: 0

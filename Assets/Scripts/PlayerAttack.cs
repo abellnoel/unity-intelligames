@@ -46,8 +46,13 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < fireStream; i++)
         {
             GameObject projectile = Instantiate(projectilePrefab,
-                                                origin.position,
-                                                origin.rotation);
+                                                    origin.position,
+                                                    origin.rotation);
+            Projectile_Fire script = projectile.GetComponent<Projectile_Fire>();
+            if (previousProjectile != null) //first projectile keeps default value
+            {
+                script.leader = previousProjectile;
+            }
             previousProjectile = projectile;
             yield return new WaitForSecondsRealtime(fireInterval);
         }

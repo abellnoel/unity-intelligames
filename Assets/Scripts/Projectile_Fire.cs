@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class Projectile_Fire : MonoBehaviour
 {
-    //TESTING FOR SWARM BEHAVIOR AND MOUSE TRACKING
-    private float speed = 8.0f;
-    public static Vector2 target;
-
+    //TESTING FOR FOLLOW BEHAVIOR AND MOUSE TRACKING
+    private float speed = 10.0f;
+    private float followDistance = 0.5f;
+    private Vector2 target;
+    public GameObject leader;
 
     void Update()
-    {     
-        target = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
-        //move towards target
-        float step = speed * Time.deltaTime;
+    {   
+        if (leader == null)
+        {
+            //initial leader will follow mouse (followers too if their leader dies)
+            target = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
+        }
+        else
+        {
+            target = leader.transform.position;
+        }
+        //move towards target, slows down if too close
+        float stepSpeed = speed;
+        if (Vector2.Distance(target, transform.position) < followDistance) {
+            stepSpeed /= 2;
+        }
+        float step = stepSpeed * Time.deltaTime;
         // move sprite towards the target location
         transform.position = Vector2.MoveTowards(transform.position, target, step);
     }

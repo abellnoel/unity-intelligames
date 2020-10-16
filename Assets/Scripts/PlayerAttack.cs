@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitForSecondsRealtime(fireInterval);
         }
         yield return new WaitForSecondsRealtime(lifetime);
-        //destory objects if they exist
+        //destory objects if they exist after lifetime seconds
         foreach (GameObject g in projectileArray)
         {
             Object.Destroy(g);

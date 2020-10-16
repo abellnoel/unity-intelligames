@@ -7,6 +7,7 @@ public class Projectile_Fire : MonoBehaviour
     //TESTING FOR FOLLOW BEHAVIOR AND MOUSE TRACKING
     private float speed = 10.0f;
     private float followDistance = 0.5f;
+    private float damage = 10;
     private Vector2 target;
     public GameObject leader;
 
@@ -33,11 +34,12 @@ public class Projectile_Fire : MonoBehaviour
     //using to not cause physics update to collisions
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //destroy if not colliding with projectile or player
+        //subtract health from on collision
         GameObject other = collision.gameObject;
         if (other.tag != "Player" && other.tag != "Projectile")
         {
-            Destroy(gameObject);
+            Health healthScript = other.GetComponent<Health>();
+            healthScript.health -= damage;
         }
     }
 

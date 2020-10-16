@@ -443,16 +443,8 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8415474506420767765, guid: 5a1c7236338fcc748b2360cfadab3f30, type: 3}
-      propertyPath: chargeMax
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415474506420767765, guid: 5a1c7236338fcc748b2360cfadab3f30, type: 3}
-      propertyPath: chargeRate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415474506420767765, guid: 5a1c7236338fcc748b2360cfadab3f30, type: 3}
       propertyPath: fireInterval
-      value: 0.08
+      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a1c7236338fcc748b2360cfadab3f30, type: 3}

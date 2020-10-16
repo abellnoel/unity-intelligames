@@ -167,8 +167,9 @@ MonoBehaviour:
   origin: {fileID: 8415474505359246052}
   projectilePrefab: {fileID: 5379803074557940200, guid: ac645359069d2c74a8dca9273617e478, type: 3}
   chargeMax: 5
-  chargeRate: 2
+  chargeRate: 3
   fireInterval: 0.08
+  lifetime: 3
 --- !u!61 &4906759866274288501
 BoxCollider2D:
   m_ObjectHideFlags: 0

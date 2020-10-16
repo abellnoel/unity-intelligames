@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float chargeMax;
     [SerializeField] private float chargeRate;
     [SerializeField] private float fireInterval;
+    [SerializeField] private float lifetime;
     private float charge;
     private int fireStreamNum;
 
@@ -39,15 +40,18 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    //function to spawn projectile, projectile movement is controlled in it's script
+    //function to spawn projectile, projectile movement is controlled in it's script, delete all after time
     IEnumerator Attack(int fireStream)
     {
         GameObject previousProjectile = null;
+        GameObject[] projectileArray = new GameObject[fireStream]; //list of all chained projectiles
+        //spawn objects
         for (int i = 0; i < fireStream; i++)
         {
             GameObject projectile = Instantiate(projectilePrefab,
                                                     origin.position,
                                                     origin.rotation);
+            projectileArray[i] = projectile;
             Projectile_Fire script = projectile.GetComponent<Projectile_Fire>();
             if (previousProjectile != null) //first projectile keeps default value
             {
@@ -56,6 +60,12 @@ public class PlayerAttack : MonoBehaviour
             previousProjectile = projectile;
             yield return new WaitForSecondsRealtime(fireInterval);
         }
-        yield return null;
+        yield return new WaitForSecondsRealtime(lifetime);
+        //destory objects if they exist
+        foreach (GameObject g in projectileArray)
+        {
+            Object.Destroy(g);
+            yield return new WaitForSecondsRealtime(fireInterval); //in same order they spawned
+        }
     }
 }

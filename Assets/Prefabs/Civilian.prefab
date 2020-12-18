@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -4590242922091364228}
   - component: {fileID: 5226212178034480111}
   - component: {fileID: 247254824}
+  - component: {fileID: 5646826880053178985}
   m_Layer: 0
   m_Name: Civilian
   m_TagString: Civilian
@@ -96,10 +97,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0031871498, y: -0.07011749}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.14584231, y: 0.24783134}
   m_EdgeRadius: 0
 --- !u!50 &-4590242922091364228
 Rigidbody2D:
@@ -132,7 +133,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5226212178034480111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +166,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5646826880053178985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5806229383426912397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4843154447aec84abf7165e8f9f2d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPrefab: {fileID: 5429436538443565648, guid: c8cff7bdc4cda7041917a18dc0e9aa23, type: 3}

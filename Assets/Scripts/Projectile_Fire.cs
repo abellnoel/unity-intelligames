@@ -15,6 +15,7 @@ public class Projectile_Fire : MonoBehaviour
     {   
         if (leader == null)
         {
+
             //initial leader will follow mouse (followers too if their leader dies)
             target = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
         }
@@ -31,6 +32,7 @@ public class Projectile_Fire : MonoBehaviour
         // move sprite towards the target location
         transform.position = Vector2.MoveTowards(transform.position, target, step);
     }
+
     //using to not cause physics update to collisions
     private void OnTriggerEnter2D(Collider2D collision) 
     {

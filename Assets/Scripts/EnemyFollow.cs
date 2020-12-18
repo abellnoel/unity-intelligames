@@ -14,14 +14,18 @@ public class EnemyFollow : MonoBehaviour
     void Update()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        target = player.transform.position;
 
-        if (target != Vector2.zero)
+        if (player != null)
         {
-            //move towards target
-            float step = speed * Time.deltaTime;
-            // move sprite towards the target location
-            transform.position = Vector2.MoveTowards(transform.position, target, step);
+            target = player.transform.position;
+
+            if (target != Vector2.zero)
+            {
+                //move towards target
+                float step = speed * Time.deltaTime;
+                // move sprite towards the target location
+                transform.position = Vector2.MoveTowards(transform.position, target, step);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

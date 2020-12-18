@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         //returns -1 left/up, 0 neutral, +1 right/down
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        rb.velocity = movement * moveSpeed;
 
         //get x, y position of the mouse in the world
         mousePoint = Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition);
@@ -25,10 +26,14 @@ public class PlayerMovement : MonoBehaviour
         //calculate rotation
         angle = Mathf.Atan2(targetPoint.y, targetPoint.x) * Mathf.Rad2Deg - 90f; //gets angle from player to mouse point
         rb.rotation = angle;
+
     }
 
+    /*
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        //rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.velocity = movement * moveSpeed;
     }
+    */
 }

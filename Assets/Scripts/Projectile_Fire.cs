@@ -34,13 +34,20 @@ public class Projectile_Fire : MonoBehaviour
     //using to not cause physics update to collisions
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //subtract health from on collision
+        //subtract health from on collision and destroy
         GameObject other = collision.gameObject;
-        if (other.tag != "Player" && other.tag != "Projectile")
+        if (other.tag == "Enemy" || other.tag == "Civilian")
         {
             Health healthScript = other.GetComponent<Health>();
             healthScript.health -= damage;
+            Destroy(gameObject);
         }
+        //destroy self on collision with wall
+        if (other.tag == "NonWalkable")
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnBecameInvisible()

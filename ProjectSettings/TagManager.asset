@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Projectile
   - NonWalkable
+  - Enemy
+  - Civilian
   layers:
   - Default
   - TransparentFX
